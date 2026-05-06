@@ -325,7 +325,7 @@ const MODULES = [
       },
       {
         id: "m2-q8", type: "single",
-        question: "What is the command to assign the name "Sw-Floor-2" to a switch?",
+        question: "What is the command to assign the name 'Sw-Floor-2' to a switch?",
         answers: ["hostname Sw-Floor-2", "host name Sw-Floor-2", "name Sw-Floor-2"],
         correct: ["hostname Sw-Floor-2"]
       },
@@ -492,12 +492,12 @@ const MODULES = [
         answers: [
           "All router commands are available.",
           "Global configuration mode can be accessed by entering the enable command.",
-          "The device prompt for this mode ends with the \">\" symbol.",
+          "The device prompt for this mode ends with the ">" symbol.",
           "Interfaces and routing protocols can be configured.",
           "Only some aspects of the router configuration can be viewed."
         ],
         correct: [
-          "The device prompt for this mode ends with the \">\" symbol.",
+          "The device prompt for this mode ends with the ">" symbol.",
           "Only some aspects of the router configuration can be viewed."
         ]
       },
