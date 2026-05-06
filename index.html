@@ -8,7 +8,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="CCNA Quiz" />
-  <link rel="manifest" href="manifest.json" />
   <style>
     :root {
       --bg: #0b1220;
@@ -423,17 +422,7 @@
     await deferredPrompt.userChoice;
     deferredPrompt = null;
     installBtn.hidden = true;
-  });
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', async () => {
-      const reg = await navigator.serviceWorker.register('./sw.js');
-      reg.update();
-      reg.addEventListener('updatefound', () => {
-        const newSW = reg.installing;
-        newSW.addEventListener('statechange', () => {
-          if (newSW.state === 'activated') window.location.reload();
-        });
+  }););
       });
     });
   });
