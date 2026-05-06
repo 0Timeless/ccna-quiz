@@ -428,12 +428,15 @@
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', async () => {
       const reg = await navigator.serviceWorker.register('./sw.js');
-      reg.update(); // sofort auf neue Version prüfen
+      reg.update();
       reg.addEventListener('updatefound', () => {
         const newSW = reg.installing;
         newSW.addEventListener('statechange', () => {
           if (newSW.state === 'activated') window.location.reload();
         });
+      });
+    });
+  });
       });
     });
   }
