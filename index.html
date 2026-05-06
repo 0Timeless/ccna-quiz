@@ -16,190 +16,94 @@
       --muted: #8ea0bd;
       --text: #e8eefc;
       --accent: #38bdf8;
-      --accent-2: #22c55e;
-      --danger: #ef4444;
-      --warning: #f59e0b;
       --border: #22304a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html {
-      background: #0b1220;
-      min-height: 100%;
-    }
+    html { background: #0b1220; min-height: 100%; }
     body {
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
-    }
-
-    body {
-      margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       background: linear-gradient(180deg, #0b1220, #0f172a 40%, #111827);
       color: var(--text);
       min-height: 100vh;
       min-height: 100dvh;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
     }
-    .app {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+    .app { max-width: 900px; margin: 0 auto; padding: 20px; }
     .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
     .logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: rgba(56,189,248,0.12);
-      border: 1px solid rgba(56,189,248,0.3);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      color: var(--accent);
+      width: 48px; height: 48px; border-radius: 14px;
+      background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3);
+      display: grid; place-items: center; font-weight: 700; color: var(--accent);
+      font-size: 1rem;
     }
-    h1 {
-      font-size: 1.35rem;
-      margin: 0;
-    }
-    .sub {
-      color: var(--muted);
-      font-size: .95rem;
-      margin-top: 4px;
-    }
+    h1 { font-size: 1.35rem; }
+    .sub { color: var(--muted); font-size: .9rem; margin-top: 3px; }
     .card {
-      background: rgba(18,26,43,0.92);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.25);
-      backdrop-filter: blur(8px);
+      background: rgba(18,26,43,0.92); border: 1px solid var(--border);
+      border-radius: 20px; padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25); backdrop-filter: blur(8px);
     }
-    .toolbar, .stats, .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .toolbar { margin-bottom: 16px; }
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
     select, button {
-      border: 1px solid var(--border);
-      background: #0f172a;
-      color: var(--text);
-      border-radius: 12px;
-      padding: 11px 14px;
-      font-size: .95rem;
+      border: 1px solid var(--border); background: #0f172a; color: var(--text);
+      border-radius: 12px; padding: 11px 14px; font-size: .95rem;
     }
-    button {
-      cursor: pointer;
-      transition: .18s ease;
-    }
+    button { cursor: pointer; transition: .18s ease; }
     button:hover { transform: translateY(-1px); }
     button.primary {
       background: linear-gradient(135deg, #0284c7, #38bdf8);
-      border: none;
-      color: white;
-      font-weight: 600;
+      border: none; color: white; font-weight: 600;
     }
-    button.good {
-      background: rgba(34,197,94,.12);
-      border-color: rgba(34,197,94,.4);
-    }
-    button.warn {
-      background: rgba(245,158,11,.12);
-      border-color: rgba(245,158,11,.4);
-    }
-    button.danger {
-      background: rgba(239,68,68,.12);
-      border-color: rgba(239,68,68,.4);
-    }
-    .stats {
-      margin: 14px 0 18px;
-    }
+    button.danger { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.4); }
+    .stats { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 18px; }
     .pill {
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: #0f172a;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .92rem;
+      padding: 10px 12px; border-radius: 999px;
+      background: #0f172a; border: 1px solid var(--border);
+      color: var(--muted); font-size: .92rem;
     }
-    .question-title {
-      font-size: 1.15rem;
-      margin: 4px 0 8px;
-      line-height: 1.4;
+    .run-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
     }
-    .question-meta {
-      color: var(--muted);
-      font-size: .92rem;
-      margin-bottom: 16px;
-    }
-    .answers {
-      display: grid;
-      gap: 12px;
-      margin: 18px 0;
-    }
-    .answer {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      background: #0f172a;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      cursor: pointer;
-    }
-    .answer input {
-      margin-top: 3px;
-      transform: scale(1.15);
-    }
-    .answer.correct {
-      border-color: rgba(34,197,94,.6);
-      background: rgba(34,197,94,.13);
-    }
-    .answer.wrong {
-      border-color: rgba(239,68,68,.6);
-      background: rgba(239,68,68,.13);
-    }
-    .feedback {
-      min-height: 24px;
-      margin: 8px 0 14px;
-      color: var(--muted);
+    .run-badge {
+      background: rgba(56,189,248,.15); border: 1px solid rgba(56,189,248,.4);
+      color: var(--accent); border-radius: 999px; padding: 6px 14px; font-size: .9rem;
     }
     .progress {
-      width: 100%;
-      height: 12px;
-      border-radius: 999px;
-      background: #0f172a;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      margin-top: 12px;
+      width: 100%; height: 10px; border-radius: 999px;
+      background: #0f172a; overflow: hidden; border: 1px solid var(--border); margin: 10px 0 18px;
     }
-    .progress > div {
-      height: 100%;
-      background: linear-gradient(90deg, #22c55e, #38bdf8);
-      width: 0;
-      transition: width .25s ease;
+    .progress > div { height: 100%; background: linear-gradient(90deg, #22c55e, #38bdf8); width: 0; transition: width .25s ease; }
+    .question-title { font-size: 1.1rem; line-height: 1.45; margin: 4px 0 6px; }
+    .question-meta { color: var(--muted); font-size: .88rem; margin-bottom: 14px; }
+    .answers { display: grid; gap: 10px; margin: 14px 0; }
+    .answer {
+      border: 1px solid var(--border); border-radius: 14px; padding: 13px;
+      background: #0f172a; display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
     }
-    .muted {
-      color: var(--muted);
+    .answer input { margin-top: 3px; transform: scale(1.15); }
+    .answer.correct { border-color: rgba(34,197,94,.6); background: rgba(34,197,94,.13); }
+    .answer.wrong   { border-color: rgba(239,68,68,.6);  background: rgba(239,68,68,.13); }
+    .feedback { min-height: 22px; margin: 6px 0 12px; color: var(--muted); font-size: .95rem; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .result-card { text-align: center; padding: 20px 10px; }
+    .result-score { font-size: 3rem; font-weight: 700; color: var(--accent); }
+    .result-sub { color: var(--muted); margin: 8px 0 20px; font-size: 1rem; }
+    .result-breakdown { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .result-pill {
+      padding: 10px 16px; border-radius: 999px; font-size: .95rem;
+      border: 1px solid var(--border); background: #0f172a;
     }
-    .empty {
-      text-align: center;
-      padding: 30px 10px;
-      color: var(--muted);
-    }
+    .result-pill.green { border-color: rgba(34,197,94,.5); color: #4ade80; }
+    .result-pill.red   { border-color: rgba(239,68,68,.5);  color: #f87171; }
+    .empty { text-align: center; padding: 30px 10px; color: var(--muted); }
     @media (max-width: 640px) {
       .app { padding: 14px; }
       .card { padding: 14px; }
@@ -208,243 +112,325 @@
   </style>
 </head>
 <body>
-  <div class="app">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo">CC</div>
-        <div>
-          <h1>CCNA Quiz Trainer</h1>
-          <div class="sub">PWA-Prototyp für Modultraining mit Lernständen</div>
-        </div>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">CC</div>
+      <div>
+        <h1>CCNA Quiz Trainer</h1>
+        <div class="sub">PWA für Modultraining mit Lernständen</div>
       </div>
-      <button id="installBtn" hidden>App installieren</button>
     </div>
-
-    <div class="card">
-      <div class="toolbar">
-        <select id="moduleSelect"></select>
-        <select id="modeSelect">
-          <option value="all">Alle Fragen</option>
-          <option value="wrong">Nur falsch beantwortete</option>
-          <option value="correct">Nur richtig beantwortete</option>
-          <option value="unseen">Nur offene Fragen</option>
-        </select>
-        <button id="newQuestionBtn">Neue Zufallsfrage</button>
-        <button id="resetProgressBtn" class="danger">Fortschritt zurücksetzen</button>
-      </div>
-
-      <div class="stats">
-        <div class="pill" id="statTotal">Gesamt: 0</div>
-        <div class="pill" id="statCorrect">Richtig: 0</div>
-        <div class="pill" id="statWrong">Falsch: 0</div>
-        <div class="pill" id="statOpen">Offen: 0</div>
-      </div>
-
-      <div class="progress"><div id="progressBar"></div></div>
-
-      <div id="quizArea"></div>
-    </div>
+    <button id="installBtn" hidden>App installieren</button>
   </div>
 
-  <script src="questions.js"></script>
-  <script>
-    const STORAGE_KEY = 'ccna-quiz-progress-v1';
-    let deferredPrompt = null;
-    let state = loadState();
-    let currentQuestion = null;
-    let currentShuffledAnswers = [];
+  <div class="card">
+    <div class="toolbar">
+      <select id="moduleSelect"></select>
+      <select id="modeSelect">
+        <option value="all">Alle Fragen – Endlosmodus</option>
+        <option value="run10">10-Fragen-Run</option>
+        <option value="wrong">Nur falsch beantwortete</option>
+        <option value="correct">Nur richtig beantwortete</option>
+        <option value="unseen">Nur offene Fragen</option>
+      </select>
+      <button id="newQuestionBtn">Neue Zufallsfrage</button>
+      <button id="resetProgressBtn" class="danger">Fortschritt zurücksetzen</button>
+    </div>
 
-    const moduleSelect = document.getElementById('moduleSelect');
-    const modeSelect = document.getElementById('modeSelect');
-    const quizArea = document.getElementById('quizArea');
-    const installBtn = document.getElementById('installBtn');
+    <div class="stats">
+      <div class="pill" id="statTotal">Gesamt: 0</div>
+      <div class="pill" id="statCorrect">Richtig: 0</div>
+      <div class="pill" id="statWrong">Falsch: 0</div>
+      <div class="pill" id="statOpen">Offen: 0</div>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div>
 
-    function shuffle(arr) {
-      const a = [...arr];
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
+    <div id="quizArea"></div>
+  </div>
+</div>
+
+<script src="questions.js"></script>
+<script>
+  const STORAGE_KEY = 'ccna-quiz-progress-v1';
+  let deferredPrompt = null;
+  let state = loadState();
+
+  // Run-Modus State
+  let runQueue = [];       // gemischte Fragen für aktuellen Run
+  let runIndex = 0;        // aktuelle Position im Run
+  let runResults = [];     // { correct: bool } pro Frage
+  let runActive = false;
+
+  // Endlosmodus State
+  let currentQuestion = null;
+  let currentShuffledAnswers = [];
+
+  const moduleSelect = document.getElementById('moduleSelect');
+  const modeSelect   = document.getElementById('modeSelect');
+  const quizArea     = document.getElementById('quizArea');
+  const installBtn   = document.getElementById('installBtn');
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
+    return a;
+  }
 
-    function loadState() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : { progress: {}, lastModuleId: 'module-1', lastMode: 'all' };
-    }
+  function loadState() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : { progress: {}, lastModuleId: null, lastMode: 'all' };
+  }
 
-    function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
+  function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
-    function ensureModuleState(moduleId) {
-      if (!state.progress[moduleId]) state.progress[moduleId] = {};
-    }
+  function ensureMod(id) { if (!state.progress[id]) state.progress[id] = {}; }
 
-    function getModule() {
-      return MODULES.find(m => m.id === moduleSelect.value) || MODULES[0];
-    }
+  function getModule() { return MODULES.find(m => m.id === moduleSelect.value) || MODULES[0]; }
 
-    function getQuestionStatus(moduleId, questionId) {
-      ensureModuleState(moduleId);
-      return state.progress[moduleId][questionId] || { seen: 0, correct: 0, wrong: 0, lastResult: null };
-    }
+  function getStatus(moduleId, questionId) {
+    ensureMod(moduleId);
+    return state.progress[moduleId][questionId] || { seen: 0, correct: 0, wrong: 0, lastResult: null };
+  }
 
-    function setQuestionStatus(moduleId, questionId, result) {
-      ensureModuleState(moduleId);
-      const prev = getQuestionStatus(moduleId, questionId);
-      state.progress[moduleId][questionId] = {
-        seen: prev.seen + 1,
-        correct: prev.correct + (result === 'correct' ? 1 : 0),
-        wrong: prev.wrong + (result === 'wrong' ? 1 : 0),
-        lastResult: result
-      };
-      saveState();
-    }
+  function setStatus(moduleId, questionId, result) {
+    ensureMod(moduleId);
+    const prev = getStatus(moduleId, questionId);
+    state.progress[moduleId][questionId] = {
+      seen: prev.seen + 1,
+      correct: prev.correct + (result === 'correct' ? 1 : 0),
+      wrong:   prev.wrong   + (result === 'wrong'   ? 1 : 0),
+      lastResult: result
+    };
+    saveState();
+  }
 
-    function getPool(module, mode) {
-      return module.questions.filter(q => {
-        const s = getQuestionStatus(module.id, q.id);
-        if (mode === 'correct') return s.lastResult === 'correct';
-        if (mode === 'wrong') return s.lastResult === 'wrong';
-        if (mode === 'unseen') return s.seen === 0;
-        return true;
-      });
-    }
+  function getPool(module, mode) {
+    return module.questions.filter(q => {
+      const s = getStatus(module.id, q.id);
+      if (mode === 'correct') return s.lastResult === 'correct';
+      if (mode === 'wrong')   return s.lastResult === 'wrong';
+      if (mode === 'unseen')  return s.seen === 0;
+      return true;
+    });
+  }
 
-    function updateStats() {
-      const module = getModule();
-      const statuses = module.questions.map(q => getQuestionStatus(module.id, q.id));
-      const correct = statuses.filter(s => s.lastResult === 'correct').length;
-      const wrong = statuses.filter(s => s.lastResult === 'wrong').length;
-      const open = statuses.filter(s => s.seen === 0).length;
-      document.getElementById('statTotal').textContent = `Gesamt: ${module.questions.length}`;
-      document.getElementById('statCorrect').textContent = `Richtig: ${correct}`;
-      document.getElementById('statWrong').textContent = `Falsch: ${wrong}`;
-      document.getElementById('statOpen').textContent = `Offen: ${open}`;
-      const done = correct + wrong;
-      document.getElementById('progressBar').style.width = `${Math.round((done / module.questions.length) * 100)}%`;
-    }
+  function updateStats() {
+    const mod = getModule();
+    const statuses = mod.questions.map(q => getStatus(mod.id, q.id));
+    const correct = statuses.filter(s => s.lastResult === 'correct').length;
+    const wrong   = statuses.filter(s => s.lastResult === 'wrong').length;
+    const open    = statuses.filter(s => s.seen === 0).length;
+    document.getElementById('statTotal').textContent   = `Gesamt: ${mod.questions.length}`;
+    document.getElementById('statCorrect').textContent = `Richtig: ${correct}`;
+    document.getElementById('statWrong').textContent   = `Falsch: ${wrong}`;
+    document.getElementById('statOpen').textContent    = `Offen: ${open}`;
+    const done = correct + wrong;
+    document.getElementById('progressBar').style.width = `${Math.round((done / mod.questions.length) * 100)}%`;
+  }
 
-    function renderEmpty(message) {
-      quizArea.innerHTML = `<div class="empty">${message}</div>`;
-    }
+  // ─── RUN-MODUS ────────────────────────────────────────────────
+  function startRun() {
+    const mod = getModule();
+    const pool = shuffle(getPool(mod, 'all'));
+    if (!pool.length) { quizArea.innerHTML = '<div class="empty">Keine Fragen verfügbar.</div>'; return; }
+    runQueue   = pool.slice(0, 10);
+    runIndex   = 0;
+    runResults = [];
+    runActive  = true;
+    renderRunQuestion();
+  }
 
-    function nextRandomQuestion() {
-      const module = getModule();
-      const pool = getPool(module, modeSelect.value);
-      if (!pool.length) {
-        renderEmpty('Für diesen Filter gibt es aktuell keine Fragen.');
-        updateStats();
-        return;
-      }
-      currentQuestion = pool[Math.floor(Math.random() * pool.length)];
-      currentShuffledAnswers = shuffle(currentQuestion.answers);
-      renderQuestion();
-      updateStats();
-    }
+  function renderRunQuestion() {
+    const mod = getModule();
+    const q   = runQueue[runIndex];
+    const shuffled = shuffle(q.answers);
+    const isMulti  = q.type === 'multi';
 
-    function renderQuestion() {
-      const isMulti = currentQuestion.type === 'multi';
-      const status = getQuestionStatus(getModule().id, currentQuestion.id);
-      quizArea.innerHTML = `
-        <div class="question-title">${currentQuestion.question}</div>
-        <div class="question-meta">${isMulti ? 'Mehrfachauswahl' : 'Einfachauswahl'} · Bisher gesehen: ${status.seen}</div>
-        <div class="answers">
-          ${currentShuffledAnswers.map((a, i) => `
-            <label class="answer" data-answer="${escapeHtml(a)}">
-              <input type="${isMulti ? 'checkbox' : 'radio'}" name="answer" value="${escapeHtml(a)}">
-              <span>${escapeHtml(a)}</span>
-            </label>
-          `).join('')}
+    quizArea.innerHTML = `
+      <div class="run-header">
+        <div class="run-badge">Frage ${runIndex + 1} / ${runQueue.length}</div>
+        <button id="abortRunBtn" style="font-size:.85rem;padding:7px 12px">Run abbrechen</button>
+      </div>
+      <div class="progress"><div id="runBar" style="width:${(runIndex/runQueue.length)*100}%"></div></div>
+      <div class="question-title">${escHtml(q.question)}</div>
+      <div class="question-meta">${isMulti ? 'Mehrfachauswahl' : 'Einfachauswahl'}</div>
+      <div class="answers">
+        ${shuffled.map(a => `
+          <label class="answer" data-answer="${escHtml(a)}">
+            <input type="${isMulti ? 'checkbox' : 'radio'}" name="answer" value="${escHtml(a)}">
+            <span>${escHtml(a)}</span>
+          </label>`).join('')}
+      </div>
+      <div class="feedback" id="feedback"></div>
+      <div class="actions">
+        <button class="primary" id="checkBtn">Antwort prüfen</button>
+        <button id="skipBtn">Überspringen</button>
+      </div>
+    `;
+
+    document.getElementById('checkBtn').addEventListener('click', () => checkRunAnswer(q, shuffled));
+    document.getElementById('skipBtn').addEventListener('click', () => advanceRun(q, false, true));
+    document.getElementById('abortRunBtn').addEventListener('click', () => { runActive = false; startNew(); });
+  }
+
+  function checkRunAnswer(q, shuffled) {
+    const selected = [...quizArea.querySelectorAll('input[name="answer"]:checked')].map(i => i.value);
+    if (!selected.length) { document.getElementById('feedback').textContent = 'Bitte erst eine Antwort auswählen.'; return; }
+    const ok = JSON.stringify([...q.correct].sort()) === JSON.stringify([...selected].sort());
+
+    quizArea.querySelectorAll('.answer').forEach(label => {
+      const v = label.dataset.answer;
+      if (q.correct.includes(v)) label.classList.add('correct');
+      if (selected.includes(v) && !q.correct.includes(v)) label.classList.add('wrong');
+    });
+
+    setStatus(getModule().id, q.id, ok ? 'correct' : 'wrong');
+    document.getElementById('feedback').textContent = ok ? '✓ Richtig!' : '✗ Falsch – richtige Antwort ist markiert.';
+    updateStats();
+
+    const btn = document.getElementById('checkBtn');
+    btn.textContent = runIndex + 1 < runQueue.length ? 'Nächste Frage' : 'Ergebnis anzeigen';
+    btn.replaceWith(btn.cloneNode(true));
+    document.getElementById('checkBtn').addEventListener('click', () => advanceRun(q, ok, false));
+  }
+
+  function advanceRun(q, wasCorrect, skipped) {
+    if (!skipped) runResults.push({ question: q.question, correct: wasCorrect });
+    runIndex++;
+    if (runIndex >= runQueue.length) { showRunResult(); return; }
+    renderRunQuestion();
+  }
+
+  function showRunResult() {
+    runActive = false;
+    const total   = runResults.length;
+    const correct = runResults.filter(r => r.correct).length;
+    const wrong   = total - correct;
+    const pct     = Math.round((correct / total) * 100);
+
+    quizArea.innerHTML = `
+      <div class="result-card">
+        <div class="result-score">${pct}%</div>
+        <div class="result-sub">${correct} von ${total} Fragen richtig beantwortet</div>
+        <div class="result-breakdown">
+          <div class="result-pill green">✓ Richtig: ${correct}</div>
+          <div class="result-pill red">✗ Falsch: ${wrong}</div>
         </div>
-        <div class="feedback" id="feedback"></div>
-        <div class="actions">
-          <button class="primary" id="checkBtn">Antwort prüfen</button>
-          <button id="skipBtn">Überspringen</button>
+        <div class="actions" style="justify-content:center;gap:12px">
+          <button class="primary" id="newRunBtn">Neuer 10er-Run</button>
+          <button id="endlessModeBtn">Endlosmodus</button>
         </div>
-      `;
-      document.getElementById('checkBtn').addEventListener('click', checkAnswer);
-      document.getElementById('skipBtn').addEventListener('click', nextRandomQuestion);
-    }
+      </div>
+    `;
 
-    function escapeHtml(str) {
-      return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
-    }
-
-    function checkAnswer() {
-      const selected = [...quizArea.querySelectorAll('input[name="answer"]:checked')].map(i => i.value);
-      if (!selected.length) {
-        document.getElementById('feedback').textContent = 'Bitte wähle erst eine Antwort aus.';
-        return;
-      }
-      const correct = [...currentQuestion.correct].sort();
-      const given = [...selected].sort();
-      const ok = JSON.stringify(correct) === JSON.stringify(given);
-
-      quizArea.querySelectorAll('.answer').forEach(label => {
-        const value = label.dataset.answer;
-        if (currentQuestion.correct.includes(value)) label.classList.add('correct');
-        if (selected.includes(value) && !currentQuestion.correct.includes(value)) label.classList.add('wrong');
-      });
-
-      setQuestionStatus(getModule().id, currentQuestion.id, ok ? 'correct' : 'wrong');
-      document.getElementById('feedback').textContent = ok ? 'Richtig beantwortet.' : 'Nicht ganz. Die richtige Lösung ist markiert.';
-      updateStats();
-
-      const checkBtn = document.getElementById('checkBtn');
-      checkBtn.textContent = 'Nächste Frage';
-      checkBtn.replaceWith(checkBtn.cloneNode(true));
-      document.getElementById('checkBtn').addEventListener('click', nextRandomQuestion);
-    }
-
-    function populateModules() {
-      moduleSelect.innerHTML = MODULES.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
-      moduleSelect.value = state.lastModuleId || MODULES[0].id;
-      modeSelect.value = state.lastMode || 'all';
-    }
-
-    moduleSelect.addEventListener('change', () => {
-      state.lastModuleId = moduleSelect.value;
+    document.getElementById('newRunBtn').addEventListener('click', startRun);
+    document.getElementById('endlessModeBtn').addEventListener('click', () => {
+      modeSelect.value = 'all';
+      state.lastMode = 'all';
       saveState();
-      nextRandomQuestion();
+      startNew();
+    });
+  }
+
+  // ─── ENDLOSMODUS ──────────────────────────────────────────────
+  function startNew() {
+    runActive = false;
+    if (modeSelect.value === 'run10') { startRun(); return; }
+    const mod  = getModule();
+    const pool = getPool(mod, modeSelect.value);
+    if (!pool.length) { quizArea.innerHTML = '<div class="empty">Keine Fragen für diesen Filter vorhanden.</div>'; updateStats(); return; }
+    currentQuestion        = pool[Math.floor(Math.random() * pool.length)];
+    currentShuffledAnswers = shuffle(currentQuestion.answers);
+    renderEndless();
+    updateStats();
+  }
+
+  function renderEndless() {
+    const q      = currentQuestion;
+    const isMulti = q.type === 'multi';
+    const status  = getStatus(getModule().id, q.id);
+    quizArea.innerHTML = `
+      <div class="question-title">${escHtml(q.question)}</div>
+      <div class="question-meta">${isMulti ? 'Mehrfachauswahl' : 'Einfachauswahl'} · Bisher gesehen: ${status.seen}</div>
+      <div class="answers">
+        ${currentShuffledAnswers.map(a => `
+          <label class="answer" data-answer="${escHtml(a)}">
+            <input type="${isMulti ? 'checkbox' : 'radio'}" name="answer" value="${escHtml(a)}">
+            <span>${escHtml(a)}</span>
+          </label>`).join('')}
+      </div>
+      <div class="feedback" id="feedback"></div>
+      <div class="actions">
+        <button class="primary" id="checkBtn">Antwort prüfen</button>
+        <button id="skipBtn">Überspringen</button>
+      </div>
+    `;
+    document.getElementById('checkBtn').addEventListener('click', checkEndless);
+    document.getElementById('skipBtn').addEventListener('click', startNew);
+  }
+
+  function checkEndless() {
+    const q        = currentQuestion;
+    const selected = [...quizArea.querySelectorAll('input[name="answer"]:checked')].map(i => i.value);
+    if (!selected.length) { document.getElementById('feedback').textContent = 'Bitte erst eine Antwort auswählen.'; return; }
+    const ok = JSON.stringify([...q.correct].sort()) === JSON.stringify([...selected].sort());
+
+    quizArea.querySelectorAll('.answer').forEach(label => {
+      const v = label.dataset.answer;
+      if (q.correct.includes(v)) label.classList.add('correct');
+      if (selected.includes(v) && !q.correct.includes(v)) label.classList.add('wrong');
     });
 
-    modeSelect.addEventListener('change', () => {
-      state.lastMode = modeSelect.value;
-      saveState();
-      nextRandomQuestion();
-    });
+    setStatus(getModule().id, q.id, ok ? 'correct' : 'wrong');
+    document.getElementById('feedback').textContent = ok ? '✓ Richtig!' : '✗ Falsch – richtige Antwort ist markiert.';
+    updateStats();
 
-    document.getElementById('newQuestionBtn').addEventListener('click', nextRandomQuestion);
-    document.getElementById('resetProgressBtn').addEventListener('click', () => {
-      if (!confirm('Wirklich den kompletten Fortschritt löschen?')) return;
-      localStorage.removeItem(STORAGE_KEY);
-      state = loadState();
-      populateModules();
-      nextRandomQuestion();
-    });
+    const btn = document.getElementById('checkBtn');
+    btn.textContent = 'Nächste Frage';
+    btn.replaceWith(btn.cloneNode(true));
+    document.getElementById('checkBtn').addEventListener('click', startNew);
+  }
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.hidden = false;
-    });
+  function escHtml(str) {
+    return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+  }
 
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      installBtn.hidden = true;
-    });
+  function populateModules() {
+    moduleSelect.innerHTML = MODULES.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
+    moduleSelect.value = state.lastModuleId || MODULES[0].id;
+    modeSelect.value   = state.lastMode     || 'all';
+  }
 
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
-    }
-
+  moduleSelect.addEventListener('change', () => { state.lastModuleId = moduleSelect.value; saveState(); startNew(); });
+  modeSelect.addEventListener('change',   () => { state.lastMode     = modeSelect.value;   saveState(); startNew(); });
+  document.getElementById('newQuestionBtn').addEventListener('click', startNew);
+  document.getElementById('resetProgressBtn').addEventListener('click', () => {
+    if (!confirm('Wirklich den kompletten Fortschritt löschen?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    state = loadState();
     populateModules();
-    nextRandomQuestion();
-  </script>
+    startNew();
+  });
+
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; installBtn.hidden = false; });
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.hidden = true;
+  });
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+  }
+
+  populateModules();
+  startNew();
+</script>
 </body>
 </html>
