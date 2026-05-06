@@ -21,7 +21,11 @@
       --warning: #f59e0b;
       --border: #22304a;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      background: #0b1220;
+      min-height: 100%;
+    }
     body {
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
@@ -35,6 +39,7 @@
       background: linear-gradient(180deg, #0b1220, #0f172a 40%, #111827);
       color: var(--text);
       min-height: 100vh;
+      min-height: 100dvh;
     }
     .app {
       max-width: 900px;
