@@ -10,84 +10,62 @@
   <meta name="apple-mobile-web-app-title" content="CCNA Quiz" />
   <style>
     :root {
-      --bg: #0b1220;
-      --card: #121a2b;
-      --muted: #8ea0bd;
-      --text: #e8eefc;
-      --accent: #38bdf8;
-      --border: #22304a;
+      --bg: #0b1220; --card: #121a2b; --muted: #8ea0bd;
+      --text: #e8eefc; --accent: #38bdf8; --border: #22304a;
+      --green: #22c55e; --red: #ef4444; --yellow: #f59e0b;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { background: #0b1220; min-height: 100%; }
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       background: linear-gradient(180deg, #0b1220, #0f172a 40%, #111827);
-      color: var(--text);
-      min-height: 100vh;
-      min-height: 100dvh;
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
+      color: var(--text); min-height: 100vh; min-height: 100dvh;
+      padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
     }
     .app { max-width: 900px; margin: 0 auto; padding: 20px; }
-    .topbar {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
-    }
+
+    /* TOPBAR */
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
     .brand { display: flex; align-items: center; gap: 12px; }
-    .logo {
-      width: 48px; height: 48px; border-radius: 14px;
-      background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3);
-      display: grid; place-items: center; font-weight: 700; color: var(--accent);
-      font-size: 1rem;
-    }
+    .logo { width: 48px; height: 48px; border-radius: 14px; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); display: grid; place-items: center; font-weight: 700; color: var(--accent); font-size: 1rem; }
     h1 { font-size: 1.35rem; }
     .sub { color: var(--muted); font-size: .9rem; margin-top: 3px; }
-    .card {
-      background: rgba(18,26,43,0.92); border: 1px solid var(--border);
-      border-radius: 20px; padding: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.25); backdrop-filter: blur(8px);
-    }
+
+    /* TABS */
+    .tabs { display: flex; gap: 4px; margin-bottom: 16px; background: rgba(15,23,42,.7); border-radius: 14px; padding: 5px; border: 1px solid var(--border); }
+    .tab-btn { flex: 1; padding: 10px 8px; border-radius: 10px; border: none; background: none; color: var(--muted); font-size: .9rem; cursor: pointer; transition: .18s ease; font-weight: 500; }
+    .tab-btn.active { background: rgba(56,189,248,.18); color: var(--accent); border: 1px solid rgba(56,189,248,.35); }
+    .tab-btn:hover:not(.active) { background: rgba(255,255,255,.05); color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* CARD */
+    .card { background: rgba(18,26,43,0.92); border: 1px solid var(--border); border-radius: 20px; padding: 18px; box-shadow: 0 12px 30px rgba(0,0,0,.25); backdrop-filter: blur(8px); }
     .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-    select, button {
-      border: 1px solid var(--border); background: #0f172a; color: var(--text);
-      border-radius: 12px; padding: 11px 14px; font-size: .95rem;
-    }
+    select, button { border: 1px solid var(--border); background: #0f172a; color: var(--text); border-radius: 12px; padding: 11px 14px; font-size: .95rem; }
     button { cursor: pointer; transition: .18s ease; }
     button:hover { transform: translateY(-1px); }
-    button.primary {
-      background: linear-gradient(135deg, #0284c7, #38bdf8);
-      border: none; color: white; font-weight: 600;
-    }
+    button.primary { background: linear-gradient(135deg, #0284c7, #38bdf8); border: none; color: white; font-weight: 600; }
     button.danger { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.4); }
+    button.mix { background: linear-gradient(135deg, #7c3aed, #a78bfa); border: none; color: white; font-weight: 600; }
+
+    /* STATS PILLS */
     .stats { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 18px; }
-    .pill {
-      padding: 10px 12px; border-radius: 999px;
-      background: #0f172a; border: 1px solid var(--border);
-      color: var(--muted); font-size: .92rem;
-    }
-    .run-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
-    }
-    .run-badge {
-      background: rgba(56,189,248,.15); border: 1px solid rgba(56,189,248,.4);
-      color: var(--accent); border-radius: 999px; padding: 6px 14px; font-size: .9rem;
-    }
-    .progress {
-      width: 100%; height: 10px; border-radius: 999px;
-      background: #0f172a; overflow: hidden; border: 1px solid var(--border); margin: 10px 0 18px;
-    }
+    .pill { padding: 10px 12px; border-radius: 999px; background: #0f172a; border: 1px solid var(--border); color: var(--muted); font-size: .92rem; }
+    .progress { width: 100%; height: 10px; border-radius: 999px; background: #0f172a; overflow: hidden; border: 1px solid var(--border); margin: 10px 0 18px; }
     .progress > div { height: 100%; background: linear-gradient(90deg, #22c55e, #38bdf8); width: 0; transition: width .25s ease; }
+
+    /* QUESTION */
+    .run-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .run-badge { background: rgba(56,189,248,.15); border: 1px solid rgba(56,189,248,.4); color: var(--accent); border-radius: 999px; padding: 6px 14px; font-size: .9rem; }
+    .mix-badge { background: rgba(124,58,237,.2); border: 1px solid rgba(167,139,250,.4); color: #a78bfa; border-radius: 999px; padding: 6px 14px; font-size: .9rem; }
     .question-title { font-size: 1.1rem; line-height: 1.45; margin: 4px 0 6px; }
     .question-meta { color: var(--muted); font-size: .88rem; margin-bottom: 14px; }
     .answers { display: grid; gap: 10px; margin: 14px 0; }
-    .answer {
-      border: 1px solid var(--border); border-radius: 14px; padding: 13px;
-      background: #0f172a; display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
-    }
+    .answer { border: 1px solid var(--border); border-radius: 14px; padding: 13px; background: #0f172a; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; transition: .15s; }
     .answer input { margin-top: 3px; transform: scale(1.15); }
+    .answer:hover { border-color: rgba(56,189,248,.4); background: rgba(56,189,248,.05); }
     .answer.correct { border-color: rgba(34,197,94,.6); background: rgba(34,197,94,.13); }
     .answer.wrong   { border-color: rgba(239,68,68,.6);  background: rgba(239,68,68,.13); }
     .feedback { min-height: 22px; margin: 6px 0 12px; color: var(--muted); font-size: .95rem; }
@@ -96,17 +74,61 @@
     .result-score { font-size: 3rem; font-weight: 700; color: var(--accent); }
     .result-sub { color: var(--muted); margin: 8px 0 20px; font-size: 1rem; }
     .result-breakdown { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
-    .result-pill {
-      padding: 10px 16px; border-radius: 999px; font-size: .95rem;
-      border: 1px solid var(--border); background: #0f172a;
-    }
+    .result-pill { padding: 10px 16px; border-radius: 999px; font-size: .95rem; border: 1px solid var(--border); background: #0f172a; }
     .result-pill.green { border-color: rgba(34,197,94,.5); color: #4ade80; }
     .result-pill.red   { border-color: rgba(239,68,68,.5);  color: #f87171; }
+    .result-pill.purple { border-color: rgba(167,139,250,.5); color: #a78bfa; }
     .empty { text-align: center; padding: 30px 10px; color: var(--muted); }
+
+    /* ===== STATISTIK TAB ===== */
+    .stat-overview { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .stat-kpi { background: #0f172a; border: 1px solid var(--border); border-radius: 16px; padding: 16px; text-align: center; }
+    .stat-kpi-value { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-kpi-value.green { color: #4ade80; }
+    .stat-kpi-value.red   { color: #f87171; }
+    .stat-kpi-value.yellow { color: #fbbf24; }
+    .stat-kpi-label { font-size: .82rem; color: var(--muted); margin-top: 6px; }
+
+    .stat-module-list { display: grid; gap: 10px; }
+    .stat-module-row { background: #0f172a; border: 1px solid var(--border); border-radius: 14px; padding: 14px; cursor: pointer; transition: .15s; }
+    .stat-module-row:hover { border-color: rgba(56,189,248,.4); background: rgba(56,189,248,.05); }
+    .stat-module-row.expanded { border-color: rgba(56,189,248,.5); }
+    .stat-module-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .stat-module-title { font-weight: 600; font-size: .95rem; }
+    .stat-module-pills { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .stat-mini-pill { font-size: .78rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border); }
+    .stat-mini-pill.g { border-color: rgba(34,197,94,.5); color: #4ade80; }
+    .stat-mini-pill.r { border-color: rgba(239,68,68,.5);  color: #f87171; }
+    .stat-mini-pill.y { border-color: rgba(245,158,11,.5); color: #fbbf24; }
+    .stat-mini-pill.b { border-color: rgba(56,189,248,.5); color: #7dd3fc; }
+    .stat-bar-row { height: 6px; border-radius: 999px; background: var(--border); margin-top: 10px; overflow: hidden; display: flex; gap: 2px; }
+    .stat-bar-seg { height: 100%; transition: width .3s ease; }
+    .stat-bar-seg.g { background: #22c55e; }
+    .stat-bar-seg.r { background: #ef4444; }
+    .stat-bar-seg.y { background: #f59e0b; }
+
+    /* Question detail table */
+    .q-detail-table { display: none; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
+    .q-detail-table.open { display: block; }
+    .q-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+    .q-table thead th { text-align: left; padding: 7px 10px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 500; white-space: nowrap; }
+    .q-table tbody tr { border-bottom: 1px solid rgba(34,51,74,.5); transition: .12s; }
+    .q-table tbody tr:hover { background: rgba(56,189,248,.04); }
+    .q-table td { padding: 8px 10px; vertical-align: top; }
+    .q-table td:first-child { color: var(--muted); white-space: nowrap; }
+    .q-table td.q-text { max-width: 320px; color: var(--text); }
+    .badge-seen { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: rgba(56,189,248,.12); color: #7dd3fc; border: 1px solid rgba(56,189,248,.25); white-space: nowrap; }
+    .badge-correct { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.3); white-space: nowrap; }
+    .badge-wrong   { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: rgba(239,68,68,.1);  color: #f87171; border: 1px solid rgba(239,68,68,.3); white-space: nowrap; }
+    .badge-unseen  { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: rgba(245,158,11,.1); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); white-space: nowrap; }
+    .stat-filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+    .stat-filter-row label { color: var(--muted); font-size: .88rem; }
+    .stat-sort-select { padding: 7px 12px; font-size: .85rem; border-radius: 10px; }
+
     @media (max-width: 640px) {
-      .app { padding: 14px; }
-      .card { padding: 14px; }
-      h1 { font-size: 1.1rem; }
+      .app { padding: 14px; } .card { padding: 14px; } h1 { font-size: 1.1rem; }
+      .tab-btn { font-size: .8rem; padding: 9px 6px; }
+      .stat-kpi-value { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -117,257 +139,552 @@
       <div class="logo">CC</div>
       <div>
         <h1>CCNA Quiz Trainer</h1>
-        <div class="sub">PWA für Modultraining mit Lernständen</div>
+        <div class="sub">ITN v7 · Module 1–17 · 285 Fragen</div>
       </div>
     </div>
     <button id="installBtn" hidden>App installieren</button>
   </div>
-  <div class="card">
-    <div class="toolbar">
-      <select id="moduleSelect"></select>
-      <select id="modeSelect">
-        <option value="all">Alle Fragen – Endlosmodus</option>
-        <option value="run10">10-Fragen-Run</option>
-        <option value="wrong">Nur falsch beantwortete</option>
-        <option value="correct">Nur richtig beantwortete</option>
-        <option value="unseen">Nur offene Fragen</option>
-      </select>
-      <button id="newQuestionBtn">Neue Zufallsfrage</button>
-      <button id="resetProgressBtn" class="danger">Fortschritt zurücksetzen</button>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="quiz">🎯 Quiz</button>
+    <button class="tab-btn" data-tab="mix">🌐 Mix-Modus</button>
+    <button class="tab-btn" data-tab="stats">📊 Statistik</button>
+  </div>
+
+  <!-- TAB: QUIZ -->
+  <div class="tab-panel active" id="tab-quiz">
+    <div class="card">
+      <div class="toolbar">
+        <select id="moduleSelect"></select>
+        <select id="modeSelect">
+          <option value="all">Alle Fragen – Endlosmodus</option>
+          <option value="run10">10-Fragen-Run</option>
+          <option value="wrong">Nur falsch beantwortete</option>
+          <option value="correct">Nur richtig beantwortete</option>
+          <option value="unseen">Nur offene Fragen</option>
+        </select>
+        <button id="newQuestionBtn">Neue Zufallsfrage</button>
+        <button id="resetProgressBtn" class="danger">Fortschritt zurücksetzen</button>
+      </div>
+      <div class="stats">
+        <div class="pill" id="statTotal">Gesamt: 0</div>
+        <div class="pill" id="statCorrect">Richtig: 0</div>
+        <div class="pill" id="statWrong">Falsch: 0</div>
+        <div class="pill" id="statOpen">Offen: 0</div>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div id="quizArea"></div>
     </div>
-    <div class="stats">
-      <div class="pill" id="statTotal">Gesamt: 0</div>
-      <div class="pill" id="statCorrect">Richtig: 0</div>
-      <div class="pill" id="statWrong">Falsch: 0</div>
-      <div class="pill" id="statOpen">Offen: 0</div>
+  </div>
+
+  <!-- TAB: MIX-MODUS -->
+  <div class="tab-panel" id="tab-mix">
+    <div class="card">
+      <div style="margin-bottom:18px">
+        <div style="font-size:1.1rem;font-weight:600;margin-bottom:6px">🌐 Cross-Module Mix</div>
+        <div style="color:var(--muted);font-size:.9rem;line-height:1.5">Zufällig 30 Fragen aus allen 17 Modulen – perfekt zur Prüfungsvorbereitung. Der Fortschritt wird genauso gespeichert wie beim normalen Modul-Training.</div>
+      </div>
+      <div class="toolbar" style="margin-bottom:12px">
+        <select id="mixCountSelect">
+          <option value="10">10 Fragen</option>
+          <option value="20">20 Fragen</option>
+          <option value="30" selected>30 Fragen</option>
+          <option value="50">50 Fragen</option>
+        </select>
+        <select id="mixFilterSelect">
+          <option value="all">Aus allen Fragen</option>
+          <option value="wrong">Nur falsch beantwortete</option>
+          <option value="unseen">Nur offene Fragen</option>
+        </select>
+        <button class="mix" id="startMixBtn">Mix starten 🚀</button>
+      </div>
+      <div id="mixArea"><div class="empty" style="padding:40px 10px">
+        <div style="font-size:2.5rem;margin-bottom:12px">🌐</div>
+        <div>Mix-Run starten um zu beginnen</div>
+      </div></div>
     </div>
-    <div class="progress"><div id="progressBar"></div></div>
-    <div id="quizArea"></div>
+  </div>
+
+  <!-- TAB: STATISTIK -->
+  <div class="tab-panel" id="tab-stats">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+        <div style="font-size:1.1rem;font-weight:600">📊 Lernstatistik</div>
+        <button id="refreshStatsBtn" style="font-size:.85rem;padding:8px 14px">Aktualisieren</button>
+      </div>
+
+      <!-- KPI Übersicht -->
+      <div class="stat-overview" id="statsOverview"></div>
+
+      <!-- Filter/Sort -->
+      <div class="stat-filter-row">
+        <label>Sortierung:</label>
+        <select class="stat-sort-select" id="statSortSelect">
+          <option value="module">Nach Modul</option>
+          <option value="wrong">Meiste Fehler zuerst</option>
+          <option value="seen">Meistgesehen zuerst</option>
+          <option value="unseen">Ungesehen zuerst</option>
+        </select>
+      </div>
+
+      <!-- Module Details -->
+      <div class="stat-module-list" id="statModuleList"></div>
+    </div>
   </div>
 </div>
+
 <script src="questions.js"></script>
 <script>
+const STORAGE_KEY = 'ccna-quiz-progress-v2';
+let deferredPrompt = null;
+let state = loadState();
 
-  const STORAGE_KEY = 'ccna-quiz-progress-v1';
-  let deferredPrompt = null;
-  let state = loadState();
-  let runQueue = [], runIndex = 0, runResults = [], runActive = false;
-  let currentQuestion = null;
+// Quiz-Tab state
+let runQueue=[], runIndex=0, runResults=[], runActive=false;
+let currentQuestion=null;
+// Mix-Tab state
+let mixQueue=[], mixIndex=0, mixResults=[], mixActive=false;
 
-  const moduleSelect = document.getElementById('moduleSelect');
-  const modeSelect   = document.getElementById('modeSelect');
-  const quizArea     = document.getElementById('quizArea');
-  const installBtn   = document.getElementById('installBtn');
+const moduleSelect  = document.getElementById('moduleSelect');
+const modeSelect    = document.getElementById('modeSelect');
+const quizArea      = document.getElementById('quizArea');
+const mixArea       = document.getElementById('mixArea');
+const installBtn    = document.getElementById('installBtn');
 
-  function shuffle(arr) {
-    const a = [...arr];
-    for (let i = a.length-1; i>0; i--) {
-      const j = Math.floor(Math.random()*(i+1));
-      [a[i],a[j]] = [a[j],a[i]];
-    }
-    return a;
-  }
+// ─── UTILS ────────────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function escHtml(s){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');}
 
-  function loadState() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {progress:{},lastModuleId:null,lastMode:'all'}; }
-    catch(e) { return {progress:{},lastModuleId:null,lastMode:'all'}; }
-  }
+function loadState(){
+  try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{progress:{},lastModuleId:null,lastMode:'all'};}
+  catch(e){return{progress:{},lastModuleId:null,lastMode:'all'};}
+}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+function ensureMod(id){if(!state.progress[id])state.progress[id]={};}
+function getModule(){return MODULES.find(m=>m.id===moduleSelect.value)||MODULES[0];}
 
-  function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-  function ensureMod(id) { if (!state.progress[id]) state.progress[id] = {}; }
-  function getModule() { return MODULES.find(m => m.id === moduleSelect.value) || MODULES[0]; }
+function getStatus(mid,qid){
+  ensureMod(mid);
+  return state.progress[mid][qid]||{seen:0,correct:0,wrong:0,lastResult:null};
+}
+function setStatus(mid,qid,result){
+  ensureMod(mid);
+  const p=getStatus(mid,qid);
+  state.progress[mid][qid]={seen:p.seen+1,correct:p.correct+(result==='correct'?1:0),wrong:p.wrong+(result==='wrong'?1:0),lastResult:result};
+  saveState();
+}
 
-  function getStatus(mid, qid) {
-    ensureMod(mid);
-    return state.progress[mid][qid] || {seen:0,correct:0,wrong:0,lastResult:null};
-  }
+// ─── QUIZ TAB ─────────────────────────────────────────────────────────────────
+function getPool(mod,mode){
+  return mod.questions.filter(q=>{
+    const s=getStatus(mod.id,q.id);
+    if(mode==='correct') return s.lastResult==='correct';
+    if(mode==='wrong')   return s.lastResult==='wrong';
+    if(mode==='unseen')  return s.seen===0;
+    return true;
+  });
+}
 
-  function setStatus(mid, qid, result) {
-    ensureMod(mid);
-    const p = getStatus(mid, qid);
-    state.progress[mid][qid] = {
-      seen: p.seen+1,
-      correct: p.correct+(result==='correct'?1:0),
-      wrong: p.wrong+(result==='wrong'?1:0),
-      lastResult: result
-    };
-    saveState();
-  }
+function updateStats(){
+  const mod=getModule();
+  const ss=mod.questions.map(q=>getStatus(mod.id,q.id));
+  const c=ss.filter(s=>s.lastResult==='correct').length;
+  const w=ss.filter(s=>s.lastResult==='wrong').length;
+  const o=ss.filter(s=>s.seen===0).length;
+  document.getElementById('statTotal').textContent='Gesamt: '+mod.questions.length;
+  document.getElementById('statCorrect').textContent='Richtig: '+c;
+  document.getElementById('statWrong').textContent='Falsch: '+w;
+  document.getElementById('statOpen').textContent='Offen: '+o;
+  document.getElementById('progressBar').style.width=Math.round(((c+w)/mod.questions.length)*100)+'%';
+}
 
-  function getPool(mod, mode) {
-    return mod.questions.filter(q => {
-      const s = getStatus(mod.id, q.id);
-      if (mode==='correct') return s.lastResult==='correct';
-      if (mode==='wrong')   return s.lastResult==='wrong';
-      if (mode==='unseen')  return s.seen===0;
-      return true;
-    });
-  }
-
-  function updateStats() {
-    const mod = getModule();
-    const ss  = mod.questions.map(q => getStatus(mod.id, q.id));
-    const c   = ss.filter(s => s.lastResult==='correct').length;
-    const w   = ss.filter(s => s.lastResult==='wrong').length;
-    const o   = ss.filter(s => s.seen===0).length;
-    document.getElementById('statTotal').textContent   = 'Gesamt: '+mod.questions.length;
-    document.getElementById('statCorrect').textContent = 'Richtig: '+c;
-    document.getElementById('statWrong').textContent   = 'Falsch: '+w;
-    document.getElementById('statOpen').textContent    = 'Offen: '+o;
-    document.getElementById('progressBar').style.width = Math.round(((c+w)/mod.questions.length)*100)+'%';
-  }
-
-  function escHtml(s) {
-    return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-  }
-
-  // RUN MODUS
-  function startRun() {
-    const mod = getModule();
-    const pool = shuffle(getPool(mod,'all'));
-    if (!pool.length) { quizArea.innerHTML='<div class="empty">Keine Fragen verfügbar.</div>'; return; }
-    runQueue=[...pool.slice(0,10)]; runIndex=0; runResults=[]; runActive=true;
-    renderRunQ();
-  }
-
-  function renderRunQ() {
-    const q = runQueue[runIndex];
-    const sh = shuffle(q.answers);
-    const multi = q.type==='multi';
-    quizArea.innerHTML = `
-      <div class="run-header">
-        <div class="run-badge">Frage ${runIndex+1} / ${runQueue.length}</div>
-        <button id="abortBtn" style="font-size:.85rem;padding:7px 12px">Abbrechen</button>
-      </div>
-      <div class="progress"><div style="height:100%;background:linear-gradient(90deg,#22c55e,#38bdf8);width:${Math.round((runIndex/runQueue.length)*100)}%"></div></div>
-      <div class="question-title">${escHtml(q.question)}</div>
-      <div class="question-meta">${multi?'Mehrfachauswahl':'Einfachauswahl'}</div>
-      <div class="answers">${sh.map(a=>`<label class="answer" data-answer="${escHtml(a)}"><input type="${multi?'checkbox':'radio'}" name="ans" value="${escHtml(a)}"><span>${escHtml(a)}</span></label>`).join('')}</div>
-      <div class="feedback" id="fb"></div>
-      <div class="actions">
-        <button class="primary" id="checkBtn">Antwort prüfen</button>
-        <button id="skipBtn">Überspringen</button>
-      </div>`;
-    document.getElementById('checkBtn').addEventListener('click', ()=>checkRunQ(q));
-    document.getElementById('skipBtn').addEventListener('click',  ()=>nextRun(q,false,true));
-    document.getElementById('abortBtn').addEventListener('click',  ()=>{ runActive=false; startNew(); });
-  }
-
-  function checkRunQ(q) {
-    const sel = [...quizArea.querySelectorAll('input[name="ans"]:checked')].map(i=>i.value);
-    if (!sel.length) { document.getElementById('fb').textContent='Bitte erst auswählen.'; return; }
-    const ok = JSON.stringify([...q.correct].sort())===JSON.stringify([...sel].sort());
-    quizArea.querySelectorAll('.answer').forEach(l=>{
-      if (q.correct.includes(l.dataset.answer)) l.classList.add('correct');
-      if (sel.includes(l.dataset.answer)&&!q.correct.includes(l.dataset.answer)) l.classList.add('wrong');
-    });
-    setStatus(getModule().id, q.id, ok?'correct':'wrong');
-    document.getElementById('fb').textContent = ok ? '✓ Richtig!' : '✗ Falsch – richtige Antwort ist markiert.';
-    updateStats();
-    const btn = document.getElementById('checkBtn');
-    btn.textContent = runIndex+1 < runQueue.length ? 'Nächste Frage' : 'Ergebnis anzeigen';
-    btn.replaceWith(btn.cloneNode(true));
-    document.getElementById('checkBtn').addEventListener('click', ()=>nextRun(q,ok,false));
-  }
-
-  function nextRun(q, ok, skipped) {
-    if (!skipped) runResults.push({correct:ok});
-    runIndex++;
-    if (runIndex>=runQueue.length) { showResult(); return; }
-    renderRunQ();
-  }
-
-  function showResult() {
-    runActive=false;
-    const total=runResults.length, c=runResults.filter(r=>r.correct).length, w=total-c;
-    quizArea.innerHTML=`
-      <div class="result-card">
-        <div class="result-score">${Math.round((c/total)*100)}%</div>
-        <div class="result-sub">${c} von ${total} Fragen richtig</div>
-        <div class="result-breakdown">
-          <div class="result-pill green">✓ Richtig: ${c}</div>
-          <div class="result-pill red">✗ Falsch: ${w}</div>
-        </div>
-        <div class="actions" style="justify-content:center">
-          <button class="primary" id="newRunBtn">Neuer 10er-Run</button>
-          <button id="endlessBtn">Endlosmodus</button>
-        </div>
-      </div>`;
-    document.getElementById('newRunBtn').addEventListener('click', startRun);
-    document.getElementById('endlessBtn').addEventListener('click', ()=>{ modeSelect.value='all'; state.lastMode='all'; saveState(); startNew(); });
-  }
-
-  // ENDLOSMODUS
-  function startNew() {
-    runActive=false;
-    if (modeSelect.value==='run10') { startRun(); return; }
-    const mod=getModule(), pool=getPool(mod,modeSelect.value);
-    if (!pool.length) { quizArea.innerHTML='<div class="empty">Keine Fragen für diesen Filter.</div>'; updateStats(); return; }
-    currentQuestion = pool[Math.floor(Math.random()*pool.length)];
-    renderEndless();
-    updateStats();
-  }
-
-  function renderEndless() {
-    const q=currentQuestion, multi=q.type==='multi', sh=shuffle(q.answers);
-    const status=getStatus(getModule().id, q.id);
-    quizArea.innerHTML=`
-      <div class="question-title">${escHtml(q.question)}</div>
-      <div class="question-meta">${multi?'Mehrfachauswahl':'Einfachauswahl'} · Bisher gesehen: ${status.seen}</div>
-      <div class="answers">${sh.map(a=>`<label class="answer" data-answer="${escHtml(a)}"><input type="${multi?'checkbox':'radio'}" name="ans" value="${escHtml(a)}"><span>${escHtml(a)}</span></label>`).join('')}</div>
-      <div class="feedback" id="fb"></div>
-      <div class="actions">
-        <button class="primary" id="checkBtn">Antwort prüfen</button>
-        <button id="skipBtn">Überspringen</button>
-      </div>`;
-    document.getElementById('checkBtn').addEventListener('click', checkEndless);
-    document.getElementById('skipBtn').addEventListener('click', startNew);
-  }
-
-  function checkEndless() {
-    const q=currentQuestion;
-    const sel=[...quizArea.querySelectorAll('input[name="ans"]:checked')].map(i=>i.value);
-    if (!sel.length) { document.getElementById('fb').textContent='Bitte erst auswählen.'; return; }
+function renderQBlock(q,container,badgeEl,onResult){
+  const multi=q.type==='multi', sh=shuffle(q.answers);
+  container.querySelector('.question-title').innerHTML=escHtml(q.question);
+  container.querySelector('.question-meta').textContent=(multi?'Mehrfachauswahl':'Einfachauswahl');
+  container.querySelector('.answers').innerHTML=sh.map(a=>`<label class="answer" data-answer="${escHtml(a)}"><input type="${multi?'checkbox':'radio'}" name="ans" value="${escHtml(a)}"><span>${escHtml(a)}</span></label>`).join('');
+  container.querySelector('#fb').textContent='';
+  const checkBtn=container.querySelector('#checkBtn');
+  checkBtn.textContent='Antwort prüfen';
+  // remove old listeners
+  const newCheck=checkBtn.cloneNode(true);
+  checkBtn.replaceWith(newCheck);
+  newCheck.addEventListener('click',()=>{
+    const sel=[...container.querySelectorAll('input[name="ans"]:checked')].map(i=>i.value);
+    if(!sel.length){container.querySelector('#fb').textContent='Bitte erst auswählen.';return;}
     const ok=JSON.stringify([...q.correct].sort())===JSON.stringify([...sel].sort());
-    quizArea.querySelectorAll('.answer').forEach(l=>{
-      if (q.correct.includes(l.dataset.answer)) l.classList.add('correct');
-      if (sel.includes(l.dataset.answer)&&!q.correct.includes(l.dataset.answer)) l.classList.add('wrong');
+    container.querySelectorAll('.answer').forEach(l=>{
+      if(q.correct.includes(l.dataset.answer)) l.classList.add('correct');
+      if(sel.includes(l.dataset.answer)&&!q.correct.includes(l.dataset.answer)) l.classList.add('wrong');
     });
-    setStatus(getModule().id, q.id, ok?'correct':'wrong');
-    document.getElementById('fb').textContent = ok ? '✓ Richtig!' : '✗ Falsch – richtige Antwort ist markiert.';
-    updateStats();
-    const btn=document.getElementById('checkBtn');
-    btn.textContent='Nächste Frage';
-    btn.replaceWith(btn.cloneNode(true));
-    document.getElementById('checkBtn').addEventListener('click', startNew);
+    container.querySelector('#fb').textContent=ok?'✓ Richtig!':'✗ Falsch – richtige Antwort ist markiert.';
+    container.querySelector('#fb').style.color=ok?'#4ade80':'#f87171';
+    onResult(ok);
+  });
+}
+
+// RUN MODUS (Quiz-Tab)
+function startRun(){
+  const mod=getModule();
+  const pool=shuffle(getPool(mod,'all'));
+  if(!pool.length){quizArea.innerHTML='<div class="empty">Keine Fragen verfügbar.</div>';return;}
+  runQueue=[...pool.slice(0,10)];runIndex=0;runResults=[];runActive=true;
+  renderRunQ();
+}
+function renderRunQ(){
+  const q=runQueue[runIndex],multi=q.type==='multi',sh=shuffle(q.answers);
+  quizArea.innerHTML=`
+    <div class="run-header">
+      <div class="run-badge">Frage ${runIndex+1} / ${runQueue.length}</div>
+      <button id="abortBtn" style="font-size:.85rem;padding:7px 12px">Abbrechen</button>
+    </div>
+    <div class="progress"><div style="height:100%;background:linear-gradient(90deg,#22c55e,#38bdf8);width:${Math.round((runIndex/runQueue.length)*100)}%"></div></div>
+    <div class="question-title"></div>
+    <div class="question-meta"></div>
+    <div class="answers"></div>
+    <div class="feedback" id="fb"></div>
+    <div class="actions"><button class="primary" id="checkBtn">Antwort prüfen</button><button id="skipBtn">Überspringen</button></div>`;
+  quizArea.querySelector('.question-title').textContent=q.question;
+  quizArea.querySelector('.question-meta').textContent=multi?'Mehrfachauswahl':'Einfachauswahl';
+  quizArea.querySelector('.answers').innerHTML=sh.map(a=>`<label class="answer" data-answer="${escHtml(a)}"><input type="${multi?'checkbox':'radio'}" name="ans" value="${escHtml(a)}"><span>${escHtml(a)}</span></label>`).join('');
+  quizArea.getElementById=id=>quizArea.querySelector('#'+id);
+  document.getElementById('abortBtn').addEventListener('click',()=>{runActive=false;startNew();});
+  document.getElementById('skipBtn').addEventListener('click',()=>{runIndex++;if(runIndex>=runQueue.length){showResult();}else{renderRunQ();}});
+  document.getElementById('checkBtn').addEventListener('click',()=>checkRunQ(q));
+}
+function checkRunQ(q){
+  const sel=[...quizArea.querySelectorAll('input[name="ans"]:checked')].map(i=>i.value);
+  if(!sel.length){document.getElementById('fb').textContent='Bitte erst auswählen.';return;}
+  const ok=JSON.stringify([...q.correct].sort())===JSON.stringify([...sel].sort());
+  quizArea.querySelectorAll('.answer').forEach(l=>{
+    if(q.correct.includes(l.dataset.answer)) l.classList.add('correct');
+    if(sel.includes(l.dataset.answer)&&!q.correct.includes(l.dataset.answer)) l.classList.add('wrong');
+  });
+  setStatus(getModule().id,q.id,ok?'correct':'wrong');
+  const fb=document.getElementById('fb');
+  fb.textContent=ok?'✓ Richtig!':'✗ Falsch – richtige Antwort ist markiert.';
+  fb.style.color=ok?'#4ade80':'#f87171';
+  updateStats();
+  const btn=document.getElementById('checkBtn');
+  btn.textContent=runIndex+1<runQueue.length?'Nächste Frage':'Ergebnis anzeigen';
+  const nb=btn.cloneNode(true);btn.replaceWith(nb);
+  nb.addEventListener('click',()=>{runResults.push({correct:ok});runIndex++;if(runIndex>=runQueue.length){showResult();}else{renderRunQ();}});
+}
+function showResult(){
+  runActive=false;
+  const total=runResults.length,c=runResults.filter(r=>r.correct).length,w=total-c;
+  quizArea.innerHTML=`
+    <div class="result-card">
+      <div class="result-score">${total?Math.round((c/total)*100):0}%</div>
+      <div class="result-sub">${c} von ${total} Fragen richtig</div>
+      <div class="result-breakdown">
+        <div class="result-pill green">✓ Richtig: ${c}</div>
+        <div class="result-pill red">✗ Falsch: ${w}</div>
+      </div>
+      <div class="actions" style="justify-content:center">
+        <button class="primary" id="newRunBtn">Neuer 10er-Run</button>
+        <button id="endlessBtn">Endlosmodus</button>
+      </div>
+    </div>`;
+  document.getElementById('newRunBtn').addEventListener('click',startRun);
+  document.getElementById('endlessBtn').addEventListener('click',()=>{modeSelect.value='all';state.lastMode='all';saveState();startNew();});
+}
+
+// ENDLOSMODUS (Quiz-Tab)
+function startNew(){
+  runActive=false;
+  if(modeSelect.value==='run10'){startRun();return;}
+  const mod=getModule(),pool=getPool(mod,modeSelect.value);
+  if(!pool.length){quizArea.innerHTML='<div class="empty">Keine Fragen für diesen Filter.</div>';updateStats();return;}
+  currentQuestion=pool[Math.floor(Math.random()*pool.length)];
+  renderEndless();
+  updateStats();
+}
+function renderEndless(){
+  const q=currentQuestion,multi=q.type==='multi',sh=shuffle(q.answers);
+  const status=getStatus(getModule().id,q.id);
+  quizArea.innerHTML=`
+    <div class="question-title"></div>
+    <div class="question-meta">${multi?'Mehrfachauswahl':'Einfachauswahl'} · Gesehen: ${status.seen}x · Richtig: ${status.correct} · Falsch: ${status.wrong}</div>
+    <div class="answers"></div>
+    <div class="feedback" id="fb"></div>
+    <div class="actions"><button class="primary" id="checkBtn">Antwort prüfen</button><button id="skipBtn">Überspringen</button></div>`;
+  quizArea.querySelector('.question-title').textContent=q.question;
+  quizArea.querySelector('.answers').innerHTML=sh.map(a=>`<label class="answer" data-answer="${escHtml(a)}"><input type="${multi?'checkbox':'radio'}" name="ans" value="${escHtml(a)}"><span>${escHtml(a)}</span></label>`).join('');
+  document.getElementById('checkBtn').addEventListener('click',checkEndless);
+  document.getElementById('skipBtn').addEventListener('click',startNew);
+}
+function checkEndless(){
+  const q=currentQuestion;
+  const sel=[...quizArea.querySelectorAll('input[name="ans"]:checked')].map(i=>i.value);
+  if(!sel.length){document.getElementById('fb').textContent='Bitte erst auswählen.';return;}
+  const ok=JSON.stringify([...q.correct].sort())===JSON.stringify([...sel].sort());
+  quizArea.querySelectorAll('.answer').forEach(l=>{
+    if(q.correct.includes(l.dataset.answer)) l.classList.add('correct');
+    if(sel.includes(l.dataset.answer)&&!q.correct.includes(l.dataset.answer)) l.classList.add('wrong');
+  });
+  setStatus(getModule().id,q.id,ok?'correct':'wrong');
+  const fb=document.getElementById('fb');
+  fb.textContent=ok?'✓ Richtig!':'✗ Falsch – richtige Antwort ist markiert.';
+  fb.style.color=ok?'#4ade80':'#f87171';
+  updateStats();
+  const btn=document.getElementById('checkBtn');
+  btn.textContent='Nächste Frage';
+  const nb=btn.cloneNode(true);btn.replaceWith(nb);
+  nb.addEventListener('click',startNew);
+}
+
+// ─── MIX-MODUS ───────────────────────────────────────────────────────────────
+function getMixPool(filterMode){
+  const pool=[];
+  MODULES.forEach(mod=>{
+    mod.questions.forEach(q=>{
+      const s=getStatus(mod.id,q.id);
+      let include=true;
+      if(filterMode==='wrong')  include=s.lastResult==='wrong';
+      if(filterMode==='unseen') include=s.seen===0;
+      if(include) pool.push({...q, _moduleId:mod.id, _moduleTitle:mod.title});
+    });
+  });
+  return pool;
+}
+
+document.getElementById('startMixBtn').addEventListener('click',()=>{
+  const count=parseInt(document.getElementById('mixCountSelect').value);
+  const filter=document.getElementById('mixFilterSelect').value;
+  const pool=shuffle(getMixPool(filter));
+  if(!pool.length){mixArea.innerHTML='<div class="empty">Keine Fragen für diesen Filter verfügbar.</div>';return;}
+  mixQueue=pool.slice(0,Math.min(count,pool.length));
+  mixIndex=0;mixResults=[];mixActive=true;
+  renderMixQ();
+});
+
+function renderMixQ(){
+  const q=mixQueue[mixIndex],multi=q.type==='multi',sh=shuffle(q.answers);
+  const pct=Math.round((mixIndex/mixQueue.length)*100);
+  const status=getStatus(q._moduleId,q.id);
+  mixArea.innerHTML=`
+    <div class="run-header">
+      <div class="mix-badge">🌐 ${mixIndex+1} / ${mixQueue.length}</div>
+      <button id="mixAbortBtn" style="font-size:.85rem;padding:7px 12px">Abbrechen</button>
+    </div>
+    <div class="progress"><div style="height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);width:${pct}%"></div></div>
+    <div style="font-size:.78rem;color:#a78bfa;margin-bottom:10px;font-weight:500">${escHtml(q._moduleTitle)}</div>
+    <div class="question-title"></div>
+    <div class="question-meta">${multi?'Mehrfachauswahl':'Einfachauswahl'} · Gesehen: ${status.seen}x</div>
+    <div class="answers"></div>
+    <div class="feedback" id="mixFb"></div>
+    <div class="actions"><button class="primary" id="mixCheckBtn">Antwort prüfen</button><button id="mixSkipBtn">Überspringen</button></div>`;
+  mixArea.querySelector('.question-title').textContent=q.question;
+  mixArea.querySelector('.answers').innerHTML=sh.map(a=>`<label class="answer" data-answer="${escHtml(a)}"><input type="${multi?'checkbox':'radio'}" name="ans" value="${escHtml(a)}"><span>${escHtml(a)}</span></label>`).join('');
+  document.getElementById('mixAbortBtn').addEventListener('click',()=>{mixActive=false;resetMixArea();});
+  document.getElementById('mixSkipBtn').addEventListener('click',()=>{mixIndex++;if(mixIndex>=mixQueue.length){showMixResult();}else{renderMixQ();}});
+  document.getElementById('mixCheckBtn').addEventListener('click',()=>checkMixQ(q));
+}
+
+function checkMixQ(q){
+  const sel=[...mixArea.querySelectorAll('input[name="ans"]:checked')].map(i=>i.value);
+  if(!sel.length){document.getElementById('mixFb').textContent='Bitte erst auswählen.';return;}
+  const ok=JSON.stringify([...q.correct].sort())===JSON.stringify([...sel].sort());
+  mixArea.querySelectorAll('.answer').forEach(l=>{
+    if(q.correct.includes(l.dataset.answer)) l.classList.add('correct');
+    if(sel.includes(l.dataset.answer)&&!q.correct.includes(l.dataset.answer)) l.classList.add('wrong');
+  });
+  setStatus(q._moduleId,q.id,ok?'correct':'wrong');
+  const fb=document.getElementById('mixFb');
+  fb.textContent=ok?'✓ Richtig!':'✗ Falsch – richtige Antwort ist markiert.';
+  fb.style.color=ok?'#4ade80':'#f87171';
+  const btn=document.getElementById('mixCheckBtn');
+  btn.textContent=mixIndex+1<mixQueue.length?'Nächste Frage':'Ergebnis anzeigen';
+  const nb=btn.cloneNode(true);btn.replaceWith(nb);
+  nb.addEventListener('click',()=>{mixResults.push({correct:ok,module:q._moduleTitle});mixIndex++;if(mixIndex>=mixQueue.length){showMixResult();}else{renderMixQ();}});
+}
+
+function showMixResult(){
+  mixActive=false;
+  const total=mixResults.length,c=mixResults.filter(r=>r.correct).length,w=total-c;
+  const pct=total?Math.round((c/total)*100):0;
+  // Per-module breakdown
+  const byMod={};
+  mixResults.forEach(r=>{
+    if(!byMod[r.module]) byMod[r.module]={c:0,w:0};
+    if(r.correct) byMod[r.module].c++; else byMod[r.module].w++;
+  });
+  const modRows=Object.entries(byMod).map(([m,v])=>`<tr><td style="color:var(--muted);padding:5px 10px;font-size:.82rem">${escHtml(m.replace('Module ','Mod. '))}</td><td style="padding:5px 10px;color:#4ade80;font-size:.82rem">${v.c} ✓</td><td style="padding:5px 10px;color:#f87171;font-size:.82rem">${v.w} ✗</td></tr>`).join('');
+  mixArea.innerHTML=`
+    <div class="result-card">
+      <div style="font-size:.9rem;color:#a78bfa;margin-bottom:8px">🌐 Mix-Run abgeschlossen</div>
+      <div class="result-score">${pct}%</div>
+      <div class="result-sub">${c} von ${total} Fragen richtig</div>
+      <div class="result-breakdown">
+        <div class="result-pill green">✓ Richtig: ${c}</div>
+        <div class="result-pill red">✗ Falsch: ${w}</div>
+        <div class="result-pill purple">📦 Module: ${Object.keys(byMod).length}</div>
+      </div>
+      ${modRows?`<table style="margin:0 auto 20px;border-collapse:collapse;max-width:380px;width:100%"><thead><tr><th style="text-align:left;color:var(--muted);font-size:.78rem;padding:5px 10px;border-bottom:1px solid var(--border)">Modul</th><th style="color:#4ade80;font-size:.78rem;padding:5px 10px;border-bottom:1px solid var(--border)">Richtig</th><th style="color:#f87171;font-size:.78rem;padding:5px 10px;border-bottom:1px solid var(--border)">Falsch</th></tr></thead><tbody>${modRows}</tbody></table>`:''}
+      <div class="actions" style="justify-content:center">
+        <button class="mix" id="newMixBtn">Neuer Mix-Run 🚀</button>
+        <button id="mixStatsBtn">Statistik ansehen</button>
+      </div>
+    </div>`;
+  document.getElementById('newMixBtn').addEventListener('click',()=>document.getElementById('startMixBtn').click());
+  document.getElementById('mixStatsBtn').addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelector('[data-tab="stats"]').classList.add('active');
+    document.getElementById('tab-stats').classList.add('active');
+    renderStats();
+  });
+}
+
+function resetMixArea(){
+  mixArea.innerHTML='<div class="empty" style="padding:40px 10px"><div style="font-size:2.5rem;margin-bottom:12px">🌐</div><div>Mix-Run starten um zu beginnen</div></div>';
+}
+
+// ─── STATISTIK TAB ───────────────────────────────────────────────────────────
+function renderStats(){
+  // Global KPIs
+  let totalQ=0,totalSeen=0,totalCorrect=0,totalWrong=0,totalUnseen=0;
+  MODULES.forEach(mod=>{
+    mod.questions.forEach(q=>{
+      totalQ++;
+      const s=getStatus(mod.id,q.id);
+      totalSeen+=s.seen;
+      totalCorrect+=(s.lastResult==='correct'?1:0);
+      totalWrong+=(s.lastResult==='wrong'?1:0);
+      if(s.seen===0) totalUnseen++;
+    });
+  });
+  const pct=totalQ?Math.round(((totalCorrect+totalWrong)/totalQ)*100):0;
+
+  document.getElementById('statsOverview').innerHTML=`
+    <div class="stat-kpi"><div class="stat-kpi-value">${totalQ}</div><div class="stat-kpi-label">Fragen gesamt</div></div>
+    <div class="stat-kpi"><div class="stat-kpi-value green">${totalCorrect}</div><div class="stat-kpi-label">Zuletzt richtig</div></div>
+    <div class="stat-kpi"><div class="stat-kpi-value red">${totalWrong}</div><div class="stat-kpi-label">Zuletzt falsch</div></div>
+    <div class="stat-kpi"><div class="stat-kpi-value yellow">${totalUnseen}</div><div class="stat-kpi-label">Noch offen</div></div>
+    <div class="stat-kpi"><div class="stat-kpi-value">${totalSeen}</div><div class="stat-kpi-label">Gesamtaufrufe</div></div>
+    <div class="stat-kpi"><div class="stat-kpi-value">${pct}%</div><div class="stat-kpi-label">Fortschritt</div></div>`;
+
+  const sort=document.getElementById('statSortSelect').value;
+  let mods=[...MODULES];
+  if(sort==='wrong'){
+    mods.sort((a,b)=>{
+      const wa=a.questions.filter(q=>getStatus(a.id,q.id).lastResult==='wrong').length;
+      const wb=b.questions.filter(q=>getStatus(b.id,q.id).lastResult==='wrong').length;
+      return wb-wa;
+    });
+  } else if(sort==='seen'){
+    mods.sort((a,b)=>{
+      const sa=a.questions.reduce((acc,q)=>acc+getStatus(a.id,q.id).seen,0);
+      const sb=b.questions.reduce((acc,q)=>acc+getStatus(b.id,q.id).seen,0);
+      return sb-sa;
+    });
+  } else if(sort==='unseen'){
+    mods.sort((a,b)=>{
+      const ua=a.questions.filter(q=>getStatus(a.id,q.id).seen===0).length;
+      const ub=b.questions.filter(q=>getStatus(b.id,q.id).seen===0).length;
+      return ub-ua;
+    });
   }
 
-  function populateModules() {
-    moduleSelect.innerHTML = MODULES.map(m=>`<option value="${m.id}">${m.title}</option>`).join('');
-    moduleSelect.value = state.lastModuleId || MODULES[0].id;
-    modeSelect.value   = state.lastMode     || 'all';
-  }
+  const list=document.getElementById('statModuleList');
+  list.innerHTML='';
+  mods.forEach(mod=>{
+    const qs=mod.questions;
+    const c=qs.filter(q=>getStatus(mod.id,q.id).lastResult==='correct').length;
+    const w=qs.filter(q=>getStatus(mod.id,q.id).lastResult==='wrong').length;
+    const u=qs.filter(q=>getStatus(mod.id,q.id).seen===0).length;
+    const seen=qs.length-u;
+    const cp=qs.length?Math.round((c/qs.length)*100):0;
+    const wp=qs.length?Math.round((w/qs.length)*100):0;
+    const up=qs.length?Math.round((u/qs.length)*100):0;
 
-  moduleSelect.addEventListener('change', ()=>{ state.lastModuleId=moduleSelect.value; saveState(); startNew(); });
-  modeSelect.addEventListener('change',   ()=>{ state.lastMode=modeSelect.value;       saveState(); startNew(); });
-  document.getElementById('newQuestionBtn').addEventListener('click', startNew);
-  document.getElementById('resetProgressBtn').addEventListener('click', ()=>{
-    if (!confirm('Wirklich den kompletten Fortschritt löschen?')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    state=loadState(); populateModules(); startNew();
+    const row=document.createElement('div');
+    row.className='stat-module-row';
+    row.innerHTML=`
+      <div class="stat-module-header">
+        <div class="stat-module-title">${escHtml(mod.title)}</div>
+        <div class="stat-module-pills">
+          <span class="stat-mini-pill g">✓ ${c}</span>
+          <span class="stat-mini-pill r">✗ ${w}</span>
+          <span class="stat-mini-pill y">○ ${u}</span>
+          <span class="stat-mini-pill b">👁 ${seen}/${qs.length}</span>
+        </div>
+      </div>
+      <div class="stat-bar-row">
+        <div class="stat-bar-seg g" style="width:${cp}%"></div>
+        <div class="stat-bar-seg r" style="width:${wp}%"></div>
+        <div class="stat-bar-seg y" style="width:${up}%"></div>
+      </div>
+      <div class="q-detail-table" id="detail-${mod.id}">
+        <table class="q-table">
+          <thead><tr><th>#</th><th>Frage</th><th>Gesehen</th><th>Richtig</th><th>Falsch</th><th>Status</th></tr></thead>
+          <tbody>
+            ${qs.map((q,i)=>{
+              const s=getStatus(mod.id,q.id);
+              let badge='';
+              if(s.seen===0) badge='<span class="badge-unseen">offen</span>';
+              else if(s.lastResult==='correct') badge='<span class="badge-correct">✓ richtig</span>';
+              else badge='<span class="badge-wrong">✗ falsch</span>';
+              const shortQ=q.question.length>70?q.question.slice(0,70)+'…':q.question;
+              return `<tr><td>${i+1}</td><td class="q-text">${escHtml(shortQ)}</td><td><span class="badge-seen">${s.seen}x</span></td><td style="color:#4ade80">${s.correct}</td><td style="color:#f87171">${s.wrong}</td><td>${badge}</td></tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>`;
+    row.querySelector('.stat-module-header').addEventListener('click',()=>{
+      const detail=row.querySelector('.q-detail-table');
+      const open=detail.classList.toggle('open');
+      row.classList.toggle('expanded',open);
+    });
+    list.appendChild(row);
   });
+}
 
-  window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); deferredPrompt=e; installBtn.hidden=false; });
-  installBtn.addEventListener('click', async ()=>{
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt=null; installBtn.hidden=true;
+// ─── TABS ────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='stats') renderStats();
   });
+});
 
-  populateModules();
-  startNew();
+document.getElementById('refreshStatsBtn').addEventListener('click',renderStats);
+document.getElementById('statSortSelect').addEventListener('change',renderStats);
 
+// ─── MODULE SELECT + INIT ─────────────────────────────────────────────────────
+function populateModules(){
+  moduleSelect.innerHTML=MODULES.map(m=>`<option value="${m.id}">${m.title}</option>`).join('');
+  moduleSelect.value=state.lastModuleId||MODULES[0].id;
+  modeSelect.value=state.lastMode||'all';
+}
+moduleSelect.addEventListener('change',()=>{state.lastModuleId=moduleSelect.value;saveState();startNew();});
+modeSelect.addEventListener('change',()=>{state.lastMode=modeSelect.value;saveState();startNew();});
+document.getElementById('newQuestionBtn').addEventListener('click',startNew);
+document.getElementById('resetProgressBtn').addEventListener('click',()=>{
+  if(!confirm('Wirklich den kompletten Fortschritt löschen?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state=loadState();populateModules();startNew();renderStats();
+});
+
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.hidden=false;});
+installBtn.addEventListener('click',async()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt=null;installBtn.hidden=true;
+});
+
+populateModules();
+startNew();
 </script>
 </body>
 </html>
