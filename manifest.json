@@ -1,16 +1,9 @@
 {
-  "name": "CCNA Quiz Trainer",
+  "name": "CCNA Final Exam Quiz",
   "short_name": "CCNA Quiz",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0b1220",
-  "theme_color": "#0f172a",
-  "description": "Offline CCNA Lern-App im Fahrschul-Stil",
-  "icons": [
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "background_color": "#1a1a2e",
+  "theme_color": "#e94560",
+  "icons": [{"src": "icon.png", "sizes": "192x192", "type": "image/png"}]
 }
